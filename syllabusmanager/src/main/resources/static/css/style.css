@@ -1,0 +1,73 @@
+.main {
+    background-color: #e1e1d0;
+}
+
+.center {
+  margin: auto;
+  width: 60%;
+  border: 2px solid black;
+  padding: 10px;
+}
+
+
+#tbl {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#tbl td, #tbl th {
+  border: 1px solid black;
+  padding: 8px;
+}
+
+#tbl tr:nth-child(even) {background-color: #f2f2f2;}
+
+.textBox {
+    margin: auto;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+}
+
+input[type=text] {
+  width: 100%;
+  padding: 6px 10px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: none;
+  border-bottom: 2px solid black;
+}
+
+.button1 {
+  border: none;
+  padding: 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.button1:hover {
+  background-color: #3e8e41;
+}
+
+.button2 {
+  border: none;
+  padding: 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 10px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 6px;
+  float: right;
+}
+
+.button2:hover {
+  background-color: #ff3333;
+}

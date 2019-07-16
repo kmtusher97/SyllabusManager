@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <style>
+#myDIV {
+  width: 100%;
+  padding: 50px 0;
+  text-align: center;
+  background-color: lightblue;
+  margin-top: 20px;
+}
+#myDIV1 {
+  width: 100%;
+  padding: 50px 0;
+  text-align: center;
+  background-color: lightgreen;
+  margin-top: 20px;
+}
+
+    </style>
+</head>
+<body>
+
+<p>Click the "Try it" button to toggle between hiding and showing the DIV element:</p>
+
+<div>
+    <button onclick="myFunction()">Try it</button>
+</div>
+<form>
+    <table style="border: 1px solid black">
+        <tbody>
+        <tr>
+            <td>
+                <div id="myDIV" style="display: none">This is my DIV element.</div>
+                <div id="myDIV1" style="display: block">This is my DIV element.</div>
+                <div>
+                    <a href="#">link</a>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <button onclick="#">add</button>
+        </tfoot>
+
+    </table>
+    <input type="button" name="submit" id="submit" value="Submit"/>
+</form>
+
+
+<p><b>Note:</b> The element will not take up any space when the display property set to "none".</p>
+
+<script>
+function myFunction() {
+  var x = document.getElementById("myDIV");
+  var y = document.getElementById("myDIV1");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+    y.style.display = "none";
+  } else {
+    x.style.display = "none";
+    y.style.display = "block";
+  }
+}
+
+</script>
+
+</body>
+</html>
+

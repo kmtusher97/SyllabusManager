@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="images/favicon.ico">
+
+    <title th:text="${'Design Page'}"></title>
+
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <script th:src="@{/js/js.js}"></script>
+
+</head>
+
+<body>
+<div class="center">
+    <form action="">
+        <div>
+            <h1 th:text="${courseStructure.name} + ' Structure'" align="center"></h1>
+        </div>
+
+        <table class="center" id="tbl">
+            <tbody th:each="courseBundle, id : ${courseStructure.contentBundleList}">
+            <tr>
+                <td>
+                    <div>
+                        <div style="float: right">
+                            <button onclick="displayTableDiv()">Table</button>
+                        </div>
+                        <script>
+
+                        </script>
+                        <div id="textAreaDiv" style="display: none">
+                            <div>
+                                <input type="text"
+                                       name="textAreaTitle"
+                                       class="input"
+                                       th:value="${courseBundle.textArea.title}"/>
+
+                            </div>
+                            <div class="textBox">
+                                <p><u>The Text Body...............</u></p>
+                            </div>
+                        </div>
+                        <div id="tableDiv">
+                            <div>
+                                <input type="text"
+                                       name="textAreaTitle"
+                                       class="input"
+                                       th:value="${courseBundle.table.title}"/>
+                            </div>
+                        </div>
+                        <div>
+                            <button class="button2" onclick="#">
+                                <a th:href="@{'/cs/deleteRow/' + ${id.index}}">
+                                    Delete
+                                </a>
+                            </button>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td>
+                    <button class="button1"
+                            onclick="#">
+                        <a type="button"
+                           name="addRow"
+                           id="addRow"
+                           class="btn btn-success"
+                           th:href="@{/cs/addRow}">
+                            Add Content
+                        </a>
+                    </button>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+        <script>
+            function displayTableDiv() {
+                var x = document.getElementById("textAreaDiv");
+                var y = document.getElementById("tableDiv");
+
+                if (x.style.display === "none") {
+                    x.style.display = "block";
+                    y.style.display = "none";
+                } else {
+                    x.style.display = "none";
+                    y.style.display = "block";
+                }
+            }
+        </script>
+        <div class="row">
+            <input type="button" name="submit" id="submit" value="Submit"/>
+        </div>
+
+    </form>
+</div>
+</body>
+</html>
