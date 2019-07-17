@@ -15,6 +15,34 @@
                 <textBody></textBody>
             </textArea>
         </contentBundle>
+        <contentBundle>
+            <selected>1</selected>
+            <table>
+                <title>Untitled Table</title>
+                <fields>
+                    <field>Field0</field>
+                </fields>
+                <rows/>
+            </table>
+            <textArea>
+                <title>Untitled Text Area</title>
+                <textBody></textBody>
+            </textArea>
+        </contentBundle>
+        <contentBundle>
+            <selected>0</selected>
+            <table>
+                <title>Untitled Table</title>
+                <fields>
+                    <field>Field0</field>
+                </fields>
+                <rows/>
+            </table>
+            <textArea>
+                <title>Untitled Text Area</title>
+                <textBody></textBody>
+            </textArea>
+        </contentBundle>
     </contentBundles>
     <courseTypeName>Theory</courseTypeName>
 </courseStructure>

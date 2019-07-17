@@ -27,12 +27,12 @@
                 <td>
                     <div>
                         <div style="float: right">
-                            <button onclick="displayTableDiv()">Table</button>
+                            <select id="contentSelector" onchange="changeContent()">
+                                <option value="0">Text Area</option>
+                                <option value="1">Table</option>
+                            </select>
                         </div>
-                        <script>
-
-                        </script>
-                        <div id="textAreaDiv" style="display: none">
+                        <div th:if="${courseBundle.selected == 0}" id="textAreaDiv">
                             <div>
                                 <input type="text"
                                        name="textAreaTitle"
@@ -44,7 +44,7 @@
                                 <p><u>The Text Body...............</u></p>
                             </div>
                         </div>
-                        <div id="tableDiv">
+                        <div th:if="${courseBundle.selected == 1}" id="tableDiv">
                             <div>
                                 <input type="text"
                                        name="textAreaTitle"
@@ -80,20 +80,7 @@
             </tr>
             </tfoot>
         </table>
-        <script>
-            function displayTableDiv() {
-                var x = document.getElementById("textAreaDiv");
-                var y = document.getElementById("tableDiv");
 
-                if (x.style.display === "none") {
-                    x.style.display = "block";
-                    y.style.display = "none";
-                } else {
-                    x.style.display = "none";
-                    y.style.display = "block";
-                }
-            }
-        </script>
         <div class="row">
             <input type="button" name="submit" id="submit" value="Submit"/>
         </div>

@@ -1,23 +1,11 @@
 
 
-/*function displayTextAreaDiv() {
-    var textAreaDiv = document.getElementById("textAreaDiv").value;
-    var tableDiv = document.getElementById("tableDiv").value;
+function changeContent() {
+    var x = document.getElementById("contentSelector").value;
 
-    textAreaDiv.style.display = "block";
-    tableDiv.style.display = "none";
-}*/
-
-/*
-function displayTableDiv() {
-    var textAreaDiv = document.getElementById("textAreaDiv");
-    var tableDiv = document.getElementById("tableDiv");
-
-    if (textAreaDiv.style.display === "block") {
-        textAreaDiv.style.display = "none";
-        tableDiv.style.display = "block";
+    if (x == 1) {
+        alert("table");
     } else {
-        textAreaDiv.style.display = "block";
-        tableDiv.style.display = "none";
+        alert("textArea");
     }
-}*/
+}
