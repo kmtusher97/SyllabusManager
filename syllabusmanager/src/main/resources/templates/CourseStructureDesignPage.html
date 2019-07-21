@@ -2,62 +2,85 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="images/favicon.ico">
 
     <title th:text="${'Design Page'}"></title>
 
-    <link th:href="@{/css/style.css}" rel="stylesheet">
-    <script th:src="@{/js/js.js}"></script>
+    <link th:href="@{/css/courseStructurePageStyle.css}" rel="stylesheet">
+    <script th:src="@{/js/courseStructurePageJs.js}"></script>
 
 </head>
 
 <body>
-<div class="center">
-    <form action="">
-        <div>
-            <h1 th:text="${courseStructure.name} + ' Structure'" align="center"></h1>
-        </div>
+<div class=""
+     id="main">
 
-        <table class="center" id="tbl">
-            <tbody th:each="courseBundle, id : ${courseStructure.contentBundleList}">
-            <tr>
+    <form class=""
+          id="courseStructureDesignForm"
+          action="#"
+          method="post">
+
+        <table class=""
+               id="courseContentTable"
+               border="1">
+
+            <thead></thead>
+            <tbody>
+            <tr th:each="contentBundle, rowId : ${courseStructure.contentBundleList}">
+
                 <td>
-                    <div>
-                        <div style="float: right">
-                            <select id="contentSelector" onchange="changeContent()">
+                    <div class=""
+                         th:id="'contentRow_' + ${rowId.index}">
+
+                        <div class=""
+                             th:id="'contentSelectorDiv_' + ${rowId.index}">
+
+                            <select class=""
+                                    th:id="'contentSelector_' + ${rowId.index}"
+                                    th:onchange="'changeContentType(' + ${rowId.index} + ')'"
+                                    th:value="${contentBundle.selected}">
+
                                 <option value="0">Text Area</option>
                                 <option value="1">Table</option>
                             </select>
                         </div>
-                        <div th:if="${courseBundle.selected == 0}" id="textAreaDiv">
-                            <div>
-                                <input type="text"
-                                       name="textAreaTitle"
-                                       class="input"
-                                       th:value="${courseBundle.textArea.title}"/>
 
+                        <div class=""
+                             th:id="'textArea_' + ${rowId.index}">
+
+                            <div class=""
+                                 th:id="'textArea_' + ${rowId.index} + '_field1'">
+
+                                <input class=""
+                                       type="text"
+                                       th:id="'textArea_' + ${rowId.index} + '_field1Name'"
+                                       th:value="${contentBundle.textArea.title}"/>
                             </div>
-                            <div class="textBox">
-                                <p><u>The Text Body...............</u></p>
+
+                            <div class=""
+                                 th:id="'textArea_' + ${rowId.index} + '_field2Preview'">
+                                <h3>Text Input Here...</h3>
                             </div>
                         </div>
-                        <div th:if="${courseBundle.selected == 1}" id="tableDiv">
-                            <div>
-                                <input type="text"
-                                       name="textAreaTitle"
-                                       class="input"
-                                       th:value="${courseBundle.table.title}"/>
+
+                        <div class=""
+                             th:id="'table_' + ${rowId.index}"
+                             style="display: none">
+
+                            <div class=""
+                                 th:id="'table_' + ${rowId.index} + '_field1'">
+
+                                <input class=""
+                                       type="text"
+                                       th:id="'table_' + ${rowId.index} + '_field1Name'"
+                                       th:value="${contentBundle.table.title}"/>
                             </div>
                         </div>
-                        <div>
-                            <button class="button2" onclick="#">
-                                <a th:href="@{'/cs/deleteRow/' + ${id.index}}">
-                                    Delete
-                                </a>
-                            </button>
+
+                        <div class=""
+                             th:id="'deleteContentRowDiv_' + ${rowId.index}">
+
+                            <a type="button"
+                               th:href="@{'/cs/deleteRow/' + ${rowId.index}}">Delete</a>
                         </div>
                     </div>
                 </td>
@@ -66,25 +89,16 @@
             <tfoot>
             <tr>
                 <td>
-                    <button class="button1"
-                            onclick="#">
+                    <div class=""
+                         id="addContentRowDiv">
+
                         <a type="button"
-                           name="addRow"
-                           id="addRow"
-                           class="btn btn-success"
-                           th:href="@{/cs/addRow}">
-                            Add Content
-                        </a>
-                    </button>
+                           th:href="@{/cs/addRow}">Add + </a>
+                    </div>
                 </td>
             </tr>
             </tfoot>
         </table>
-
-        <div class="row">
-            <input type="button" name="submit" id="submit" value="Submit"/>
-        </div>
-
     </form>
 </div>
 </body>

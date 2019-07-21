@@ -1,11 +1,8 @@
 
 
-function changeContent() {
-    var x = document.getElementById("contentSelector").value;
-
-    if (x == 1) {
-        alert("table");
-    } else {
-        alert("textArea");
-    }
+function makeReq() {
+    alert("change");
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", "http://localhost:8081/cs/testReq", true ); // false for synchronous request
+    xmlHttp.send();
 }

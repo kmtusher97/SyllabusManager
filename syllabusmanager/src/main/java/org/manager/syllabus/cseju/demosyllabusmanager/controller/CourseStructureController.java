@@ -73,6 +73,14 @@ public class CourseStructureController {
     @GetMapping("/test")
     public ModelAndView test() {
         ModelAndView modelAndView = new ModelAndView("index");
+        modelAndView.addObject("str", "Initial String");
+        return modelAndView;
+    }
+
+    @GetMapping("/testReq")
+    public ModelAndView testReq() {
+        ModelAndView modelAndView = new ModelAndView("index");
+        modelAndView.addObject("str", "Response request :)");
         return modelAndView;
     }
 }

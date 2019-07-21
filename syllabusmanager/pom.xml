@@ -11,7 +11,7 @@
 	<groupId>org.manager.syllabus.cseju</groupId>
 	<artifactId>demosyllabusmanager</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>demosyllabusmanager</name>
+	<name>syllabusManager</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
