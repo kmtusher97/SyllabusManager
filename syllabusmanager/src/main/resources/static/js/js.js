@@ -1,8 +1,64 @@
+/*
+$( document ).ready(function() {
+
+   */
+/* $("#myForm").submit(function(event) {
+        //event.preventDefault();
+        ajaxPost();
+    });*//*
 
 
-function makeReq() {
-    alert("change");
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", "http://localhost:8081/cs/testReq", true ); // false for synchronous request
-    xmlHttp.send();
-}
+   $("#inpt").on("change", function(event) {
+        //event.preventDefault();
+        ajaxPost();
+   });
+
+
+    function ajaxPost(){
+
+      // PREPARE FORM DATA
+      var formData = {
+        title : $("#inpt").val()
+      }
+
+      // DO POST
+      $.ajax({
+      type : "POST",
+      contentType : "application/json",
+      url : "/cs/postTest",
+      data : JSON.stringify(formData),
+      dataType : 'json'
+    });
+  }
+})*/
+
+$( document ).ready(function() {
+
+    /* $("#myForm").submit(function(event) {
+    //event.preventDefault();
+    ajaxPost();
+    });*/
+
+        $("#myForm").on("change", function() {
+            ajaxPost();
+        });
+
+
+
+        function ajaxPost(){
+
+             // PREPARE FORM DATA
+            var formData = {
+                title : $("#inpt2").val()
+            }
+            // DO POST
+            $.ajax({
+                type : "POST",
+                contentType : "application/json",
+                url : "/cs/postTest",
+                data : JSON.stringify(formData),
+                dataType : 'json'
+            });
+        }
+
+})

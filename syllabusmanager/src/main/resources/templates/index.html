@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <!--<link th:href="@{/css/style.css}" rel="stylesheet">-->
+    <script type="text/javascript" src="./lib/jquery-3.3.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script th:src="@{/js/js.js}"></script>
 </head>
 <body>
 <div>
-    <input type="text" onchange="makeReq()">
-    <h2 th:text="${str}"></h2>
+    <form id="myForm">
+        <input type="text" id="inpt1" th:value="${str}">
+        <input type="text" id="inpt2" th:value="${'text'}">
+        <button id="btn" type="submit">Submit</button>
+    </form>
 </div>
 </body>
 </html>

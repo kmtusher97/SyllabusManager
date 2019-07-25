@@ -6,6 +6,7 @@
     <title th:text="${'Design Page'}"></title>
 
     <link th:href="@{/css/courseStructurePageStyle.css}" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script th:src="@{/js/courseStructurePageJs.js}"></script>
 
 </head>
@@ -15,9 +16,12 @@
      id="main">
 
     <form class=""
-          id="courseStructureDesignForm"
-          action="#"
-          method="post">
+          id="courseStructureDesignForm">
+
+        <input class=""
+               id="courseStructureName"
+               type="hidden"
+               th:value="${courseStructure.name}">
 
         <table class=""
                id="courseContentTable"
@@ -36,8 +40,8 @@
 
                             <select class=""
                                     th:id="'contentSelector_' + ${rowId.index}"
-                                    th:onchange="'changeContentType(' + ${rowId.index} + ')'"
-                                    th:value="${contentBundle.selected}">
+                                    th:value="${contentBundle.selected}"
+                                    th:onchange="'changeContentType(' + ${rowId.index} + ')'">
 
                                 <option value="0">Text Area</option>
                                 <option value="1">Table</option>
@@ -45,7 +49,8 @@
                         </div>
 
                         <div class=""
-                             th:id="'textArea_' + ${rowId.index}">
+                             th:id="'textArea_' + ${rowId.index}"
+                             th:style="${contentBundle.selected == 1} ? 'display: none' : 'display: block'">
 
                             <div class=""
                                  th:id="'textArea_' + ${rowId.index} + '_field1'">
@@ -64,7 +69,7 @@
 
                         <div class=""
                              th:id="'table_' + ${rowId.index}"
-                             style="display: none">
+                             th:style="${contentBundle.selected == 0} ? 'display: none' : 'display: block'">
 
                             <div class=""
                                  th:id="'table_' + ${rowId.index} + '_field1'">
@@ -73,6 +78,29 @@
                                        type="text"
                                        th:id="'table_' + ${rowId.index} + '_field1Name'"
                                        th:value="${contentBundle.table.title}"/>
+                            </div>
+
+                            <div class=""
+                                 th:id="'table_' + ${rowId.index} + '_field2'">
+
+                                <table class=""
+                                       th:id="'table_' + ${rowId.index} + 'FieldNameTable'">
+
+                                    <tbody>
+                                    <tr>
+                                        <td th:each="contentTableFieldName, colId : ${contentBundle.table.fields}">
+                                            <div class=""
+                                                 th:id="'contentTable' + ${rowId.index} + 'FieldNameDiv' + ${colId.index}">
+
+                                                <input class=""
+                                                       type="text"
+                                                       th:id="'contentTable' + ${rowId.index} + 'FieldName' + ${colId.index}"
+                                                       th:value="${contentTableFieldName}"/>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
 
