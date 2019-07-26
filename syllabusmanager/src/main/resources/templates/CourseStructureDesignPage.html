@@ -43,8 +43,8 @@
                                     th:value="${contentBundle.selected}"
                                     th:onchange="'changeContentType(' + ${rowId.index} + ')'">
 
-                                <option value="0">Text Area</option>
-                                <option value="1">Table</option>
+                                <option th:value="${contentBundle.selected}" th:text="${contentBundle.selected == 0} ? 'Text Area' : 'Table'"></option>
+                                <option th:value="${contentBundle.selected == 0} ? 1 : 0" th:text="${contentBundle.selected == 1} ? 'Text Area' : 'Table'"></option>
                             </select>
                         </div>
 

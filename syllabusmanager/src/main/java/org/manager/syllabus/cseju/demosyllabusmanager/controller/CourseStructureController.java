@@ -52,10 +52,10 @@ public class CourseStructureController {
 
     @PostMapping("/autoSave")
     public ModelAndView saveChangesByAutoSave(@RequestBody CourseStructure courseStructure) throws JAXBException {
-        //courseStructureServices.saveCourseStructure(courseStructure, filename);
+        courseStructureServices.saveCourseStructure(courseStructure, filename);
         System.err.println(courseStructure);
-        //return new ModelAndView("redirect:/cs/design");
-        return null;
+        return new ModelAndView("redirect:/cs/design/autoSave");
+        //return null;
     }
 
 
