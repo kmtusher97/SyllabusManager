@@ -53,11 +53,25 @@ public class CourseStructureController {
     @PostMapping("/autoSave")
     public ModelAndView saveChangesByAutoSave(@RequestBody CourseStructure courseStructure) throws JAXBException {
         courseStructureServices.saveCourseStructure(courseStructure, filename);
-        System.err.println(courseStructure);
+       // System.err.println(courseStructure);
         return new ModelAndView("redirect:/cs/design/autoSave");
         //return null;
     }
 
+
+    @GetMapping("/addFieldTable/{rowId}")
+    public ModelAndView addNewFieldInTableContent(@PathVariable("rowId") Integer tableNo) throws JAXBException, FileNotFoundException {
+        courseStructureServices.addNewFieldInTable(tableNo, filename);
+        return new ModelAndView("redirect:/cs/design/+");
+    }
+
+    @GetMapping("/deleteField/{rowId}/{colId}")
+    public ModelAndView deleteFieldNameFromTableContent(@PathVariable("rowId") Integer tableNo,
+                                                        @PathVariable("colId") Integer fieldNo) throws JAXBException, FileNotFoundException {
+        courseStructureServices.deleteFieldNameFromTable(tableNo, fieldNo, filename);
+
+        return new ModelAndView("redirect:/cs/design/-");
+    }
 
     /**
      * Test Functions

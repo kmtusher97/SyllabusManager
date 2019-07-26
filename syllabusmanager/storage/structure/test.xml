@@ -20,21 +20,8 @@
             <table>
                 <title>Course Contents</title>
                 <fields>
-                    <field>Content Title</field>
-                </fields>
-                <rows/>
-            </table>
-            <textArea>
-                <title>Untitled Text Area</title>
-                <textBody>Empty Text Body</textBody>
-            </textArea>
-        </contentBundle>
-        <contentBundle>
-            <selected>1</selected>
-            <table>
-                <title>Laboratory Outcome</title>
-                <fields>
-                    <field>Intrument</field>
+                    <field>Title</field>
+                    <field>Description</field>
                 </fields>
                 <rows/>
             </table>

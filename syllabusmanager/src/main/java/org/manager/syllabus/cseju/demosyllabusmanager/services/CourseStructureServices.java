@@ -14,4 +14,8 @@ public interface CourseStructureServices {
     void addNewContentBundle(String filename) throws JAXBException, FileNotFoundException;
 
     void deleteContentBundleRow(Integer id, String filename) throws JAXBException, FileNotFoundException;
+
+    void addNewFieldInTable(Integer tableNo, String filename) throws JAXBException, FileNotFoundException;
+
+    void deleteFieldNameFromTable(Integer tableNo, Integer fieldNo, String filename) throws JAXBException, FileNotFoundException;
 }

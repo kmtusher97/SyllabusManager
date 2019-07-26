@@ -43,8 +43,10 @@
                                     th:value="${contentBundle.selected}"
                                     th:onchange="'changeContentType(' + ${rowId.index} + ')'">
 
-                                <option th:value="${contentBundle.selected}" th:text="${contentBundle.selected == 0} ? 'Text Area' : 'Table'"></option>
-                                <option th:value="${contentBundle.selected == 0} ? 1 : 0" th:text="${contentBundle.selected == 1} ? 'Text Area' : 'Table'"></option>
+                                <option th:value="${contentBundle.selected}"
+                                        th:text="${contentBundle.selected == 0} ? 'Text Area' : 'Table'"></option>
+                                <option th:value="${contentBundle.selected == 0} ? 1 : 0"
+                                        th:text="${contentBundle.selected == 1} ? 'Text Area' : 'Table'"></option>
                             </select>
                         </div>
 
@@ -92,10 +94,32 @@
                                             <div class=""
                                                  th:id="'contentTable' + ${rowId.index} + 'FieldNameDiv' + ${colId.index}">
 
-                                                <input class=""
-                                                       type="text"
-                                                       th:id="'contentTable' + ${rowId.index} + 'FieldName' + ${colId.index}"
-                                                       th:value="${contentTableFieldName}"/>
+                                                <div class=""
+                                                     th:id="'contentTable' + ${rowId.index} + 'FieldNameInputDiv' + ${colId.index}">
+
+                                                    <input class=""
+                                                           type="text"
+                                                           th:id="'contentTable' + ${rowId.index} + 'FieldName' + ${colId.index}"
+                                                           th:value="${contentTableFieldName}"/>
+                                                </div>
+
+                                                <div class=""
+                                                     th:id="'contentTable' + ${rowId.index} + 'FieldNameDeleteDiv' + ${colId.index}">
+
+                                                    <a class=""
+                                                       th:id="'contentTable' + ${rowId.index} + 'FieldNameDeleteButton' + ${colId.index}"
+                                                       th:href="@{'/cs/deleteField/' + ${rowId.index} + '/' + ${colId.index}}">Delete
+                                                        Field</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class=""
+                                                 th:id="'contentTableAddFieldDiv' + ${rowId.index}">
+
+                                                <a class=""
+                                                   th:id="'contentTableAddFieldButton' + ${rowId.index}"
+                                                   th:href="@{'/cs/addFieldTable/' + ${rowId.index}}">Add Field</a>
                                             </div>
                                         </td>
                                     </tr>

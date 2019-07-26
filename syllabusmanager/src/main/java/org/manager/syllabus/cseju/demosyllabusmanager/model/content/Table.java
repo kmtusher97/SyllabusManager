@@ -29,7 +29,6 @@ public class Table extends Content {
 
     /**
      * Getters for xml mapping
-     *
      */
     @XmlElementWrapper(name = "fields")
     @XmlElement(name = "field")
@@ -41,5 +40,23 @@ public class Table extends Content {
     @XmlElement(name = "row")
     public List<TableRow> getRows() {
         return rows;
+    }
+
+    public void addNewField() {
+        if (this.fields == null) {
+            this.fields = new ArrayList<>();
+        }
+        this.fields.add("Field" + this.fields.size());
+    }
+
+    public void deleteFieldName(int fieldNo) {
+        if (this.fields == null) {
+            this.fields = new ArrayList<>();
+        }
+        if (fieldNo >= this.fields.size()) {
+            return;
+        }
+        this.fields.remove(fieldNo);
+
     }
 }
