@@ -18,8 +18,9 @@
         <contentBundle>
             <selected>1</selected>
             <table>
-                <title>Course Contents</title>
+                <title>Course Content</title>
                 <fields>
+                    <field>SL</field>
                     <field>Title</field>
                     <field>Description</field>
                 </fields>
