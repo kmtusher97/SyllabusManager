@@ -18,4 +18,11 @@ public class TextArea extends Content {
         super(title);
         this.textBody = textBody;
     }
+
+    public String toXML() {
+        return "<textArea>" +
+                    "<title>" + this.title + "</title>" +
+                    "<textBody>" + this.textBody + "</textBody>" +
+                "</textArea>";
+    }
 }

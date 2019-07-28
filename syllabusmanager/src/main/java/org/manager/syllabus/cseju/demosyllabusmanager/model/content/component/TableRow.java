@@ -26,4 +26,13 @@ public class TableRow {
     public List<String> getCells() {
         return cells;
     }
+
+    public String toXML() {
+        String cellsXML = "";
+        for(String cell : this.cells) {
+            cellsXML += ("<cell>" + cell + "</cell>");
+        }
+
+        return "<row>" + cellsXML + "</row>";
+    }
 }

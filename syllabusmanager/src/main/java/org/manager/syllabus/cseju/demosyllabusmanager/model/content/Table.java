@@ -59,4 +59,22 @@ public class Table extends Content {
         this.fields.remove(fieldNo);
 
     }
+
+    public String toXML() {
+        String fieldsXML = "";
+        for(String field : this.fields) {
+            fieldsXML += ("<field>" + field + "</field>");
+        }
+
+        String rowsXML = "";
+        for(TableRow tableRow : this.rows) {
+            rowsXML += tableRow.toXML();
+        }
+
+        return "<table>" +
+                    "<title>" + this.title + "</title>" +
+                    "<fields>" + fieldsXML + "</fields>" +
+                    "<rows>" + rowsXML + "</rows>" +
+                "</table>";
+    }
 }

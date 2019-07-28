@@ -13,4 +13,5 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Content {
 
     protected String title;
+
 }

@@ -1,0 +1,1 @@
+insert node <a></a> into doc('storage/test/test1.xml')//courseStructure

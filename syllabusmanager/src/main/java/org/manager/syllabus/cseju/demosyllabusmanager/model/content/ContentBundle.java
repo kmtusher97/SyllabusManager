@@ -21,4 +21,13 @@ public class ContentBundle {
     public ContentBundle(Integer selected) {
         this.selected = selected;
     }
+
+    public String toXML() {
+        return "<contentBundle>" +
+                    "<selected>" + this.selected + "</selected>" +
+                    this.textArea.toXML() +
+                    this.table.toXML() +
+                "</contentBundle>";
+
+    }
 }

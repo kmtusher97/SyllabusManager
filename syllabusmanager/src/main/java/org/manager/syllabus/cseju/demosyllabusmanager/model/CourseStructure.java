@@ -6,11 +6,11 @@ import org.manager.syllabus.cseju.demosyllabusmanager.model.content.ContentBundl
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.ArrayList;
 import java.util.List;
 
 @Setter
 @ToString
-@NoArgsConstructor
 @AllArgsConstructor
 @XmlRootElement(name = "courseStructure")
 public class CourseStructure {
@@ -19,6 +19,11 @@ public class CourseStructure {
 
     private List<ContentBundle> contentBundleList;
 
+
+    public CourseStructure() {
+        this.name = "";
+        this.contentBundleList = new ArrayList<>();
+    }
 
     @XmlElement(name = "courseTypeName")
     public String getName() {
@@ -29,5 +34,19 @@ public class CourseStructure {
     @XmlElement(name = "contentBundle")
     public List<ContentBundle> getContentBundleList() {
         return contentBundleList;
+    }
+
+    public String toXML() {
+        String contentBundleListXML = "";
+        for (ContentBundle contentBundle : this.contentBundleList) {
+            contentBundleListXML += contentBundle.toXML();
+        }
+
+        return "<courseStructure>" +
+                    "<name>" + this.name + "</name>" +
+                    "<contentBundles>" +
+                        contentBundleListXML +
+                    "</contentBundles>" +
+                "</courseStructure>";
     }
 }
