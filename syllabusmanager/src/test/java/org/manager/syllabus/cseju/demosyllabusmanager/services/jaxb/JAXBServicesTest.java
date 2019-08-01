@@ -29,14 +29,14 @@ public class JAXBServicesTest {
 
     @Test
     public void objectToXmlStringTest1() {
-        String actual = jaxbServices.objectToXmlString(textArea);
+        String actual = jaxbServices.objectToXmlString(textArea, false);
         String expected = "<textArea textAreaId=\"10\"><title>text area 1</title><textBody>some text</textBody></textArea>";
         assertEquals(actual, expected);
     }
 
     @Test
     public void objectToXmlStringTest2() {
-        String actual = jaxbServices.objectToXmlString(table);
+        String actual = jaxbServices.objectToXmlString(table, false);
         String expected = "<table tableId=\"11\"><title>table 2</title><fields><field>Field0</field><field>Field1</field></fields><rows><row tableRowId=\"56\"><cells><cell>cell0</cell><cell>cell1</cell></cells></row></rows></table>";
         assertEquals(actual, expected);
     }
