@@ -3,33 +3,44 @@ package org.manager.syllabus.cseju.demosyllabusmanager.model.content;
 import lombok.*;
 import org.manager.syllabus.cseju.demosyllabusmanager.model.content.component.TableRow;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementWrapper;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-
+@Getter
 @Setter
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @XmlRootElement(name = "table")
-public class Table extends Content {
+@XmlType(propOrder = {"title", "fields", "rows"})
+public class Table implements Serializable {
+
+    private Integer tableId;
+
+    private String title;
 
     private List<String> fields;
 
     private List<TableRow> rows;
 
     public Table(String title, List<String> fields) {
-        super(title);
+        this.title = title;
         this.fields = fields;
         this.rows = new ArrayList<>();
     }
 
+
     /**
      * Getters for xml mapping
      */
+
+    @XmlAttribute(name = "tableId")
+    public Integer getTableId() {
+        return tableId;
+    }
+
     @XmlElementWrapper(name = "fields")
     @XmlElement(name = "field")
     public List<String> getFields() {

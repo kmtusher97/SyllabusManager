@@ -1,5 +1,6 @@
 package org.manager.syllabus.cseju.demosyllabusmanager.model;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.manager.syllabus.cseju.demosyllabusmanager.model.content.ContentBundle;
@@ -9,9 +10,7 @@ import org.manager.syllabus.cseju.demosyllabusmanager.model.content.TextArea;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
-import javax.xml.soap.Node;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +18,7 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 public class CourseStructureTest {
-
+    private final String STORAGE_LOCATION = "storage/test/test.xml";
     private CourseStructure courseStructure;
 
     @Before
@@ -27,8 +26,10 @@ public class CourseStructureTest {
         courseStructure = new CourseStructure();
         courseStructure.setName("Theory");
         ContentBundle contentBundle = new ContentBundle();
-        contentBundle.setTextArea(new TextArea("Course Summary"));
+        contentBundle.setContentBundleId(23);
+        contentBundle.setTextArea(new TextArea(12, "Course Summary", "Empty Text Body"));
         Table table = new Table("Course Content", new ArrayList<>());
+        table.setTableId(125);
         table.addNewField();
         table.addNewField();
         contentBundle.setTable(table);
@@ -37,10 +38,9 @@ public class CourseStructureTest {
         courseStructure.setContentBundleList(contentBundleList);
 
 
-        File file = new File("storage/test/test.xml");
+        File file = new File(STORAGE_LOCATION);
         if(!file.exists()) {
             file.createNewFile();
-            throw new FileNotFoundException("no such file");
         }
     }
 
@@ -51,5 +51,11 @@ public class CourseStructureTest {
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
         marshaller.marshal(courseStructure, new File("storage/test/test.xml"));
         marshaller.marshal(courseStructure, System.out);
+    }
+
+    @After
+    public void close() {
+        File file = new File(STORAGE_LOCATION);
+        file.delete();
     }
 }

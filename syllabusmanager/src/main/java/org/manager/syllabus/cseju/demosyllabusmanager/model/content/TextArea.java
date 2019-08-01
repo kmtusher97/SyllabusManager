@@ -2,7 +2,10 @@ package org.manager.syllabus.cseju.demosyllabusmanager.model.content;
 
 import lombok.*;
 
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+import java.io.Serializable;
 
 @Getter
 @Setter
@@ -10,12 +13,22 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NoArgsConstructor
 @AllArgsConstructor
 @XmlRootElement(name = "textArea")
-public class TextArea extends Content {
+@XmlType(propOrder = {"title", "textBody"})
+public class TextArea implements Serializable {
+
+    private Integer textAreaId;
+
+    private String title;
 
     private String textBody;
 
     public TextArea(String title, String textBody) {
-        super(title);
+        this.title = title;
         this.textBody = textBody;
+    }
+
+    @XmlAttribute(name = "textAreaId")
+    public Integer getTextAreaId() {
+        return textAreaId;
     }
 }
