@@ -108,6 +108,7 @@ public class BaseXService {
 
     /**
      * Stop and Delete the database
+     *
      * @param databaseName
      */
     public void stopAndDeleteService(String databaseName) {
@@ -128,14 +129,17 @@ public class BaseXService {
      * @param databaseName
      * @param xQuery
      * @return
-     * @throws IOException
      */
-    public String executeReadQuery(String databaseName, String xQuery) throws IOException {
+    public String executeReadQuery(String databaseName, String xQuery) {
         /**
          * Start server on default port 1984
          */
         String result = null;
-        result = session.execute("XQUERY " + xQuery);
+        try {
+            result = session.execute("XQUERY " + xQuery);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return result;
     }
 
@@ -144,10 +148,13 @@ public class BaseXService {
      *
      * @param databaseName
      * @param xQuery
-     * @throws IOException
      */
-    public void executeWriteQuery(String databaseName, String xQuery) throws IOException {
-        session.execute("XQUERY " + xQuery);
+    public void executeWriteQuery(String databaseName, String xQuery) {
+        try {
+            session.execute("XQUERY " + xQuery);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }
