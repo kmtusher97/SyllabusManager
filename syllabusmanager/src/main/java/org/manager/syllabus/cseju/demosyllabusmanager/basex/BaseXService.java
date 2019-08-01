@@ -26,6 +26,7 @@ public class BaseXService {
 
     /**
      * Create a new baseX xml database
+     *
      * @param databaseName
      * @param rootElementXml
      */
@@ -85,7 +86,11 @@ public class BaseXService {
         }
     }
 
-
+    /**
+     * Stops the baseX server
+     *
+     * @param databaseName
+     */
     public void stopService(String databaseName) {
         try {
             /**
@@ -99,6 +104,21 @@ public class BaseXService {
          * Stop the server
          */
         baseXServer.stop();
+    }
+
+    /**
+     * Stop and Delete the database
+     * @param databaseName
+     */
+    public void stopAndDeleteService(String databaseName) {
+        stopService(databaseName);
+        /**
+         * delete the xml database
+         */
+        File file = new File(STORAGE_LOCATION + databaseName + XML_EXTENSION);
+        if (file.exists()) {
+            file.delete();
+        }
     }
 
 
