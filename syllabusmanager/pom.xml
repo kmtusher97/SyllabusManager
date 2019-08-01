@@ -19,10 +19,12 @@
 	</properties>
 
 	<dependencies>
+		<!--template engine-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -38,6 +40,18 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+
+		<!--baseX integration-->
+		<dependency>
+			<groupId>org.basex</groupId>
+			<artifactId>basex-api</artifactId>
+			<version>9.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.basex</groupId>
+			<artifactId>basex</artifactId>
+			<version>9.0</version>
 		</dependency>
 	</dependencies>
 
