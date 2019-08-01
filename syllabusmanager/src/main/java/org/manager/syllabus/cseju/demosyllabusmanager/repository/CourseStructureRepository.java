@@ -10,6 +10,8 @@ import java.io.FileNotFoundException;
 
 public class CourseStructureRepository {
 
+
+
     public void saveCourseStructure(CourseStructure courseStructure, String fileName) throws JAXBException {
         JAXBContext jaxbContext = JAXBContext.newInstance(CourseStructure.class);
         Marshaller marshaller = jaxbContext.createMarshaller();

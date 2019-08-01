@@ -8,6 +8,7 @@ import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
 
+@Getter
 @Setter
 @ToString
 @NoArgsConstructor
@@ -19,11 +20,6 @@ public class CourseStructure {
 
     private List<ContentBundle> contentBundleList;
 
-
-    @XmlElement(name = "courseTypeName")
-    public String getName() {
-        return name;
-    }
 
     @XmlElementWrapper(name = "contentBundles")
     @XmlElement(name = "contentBundle")

@@ -68,6 +68,17 @@ public class Table implements Serializable {
             return;
         }
         this.fields.remove(fieldNo);
+    }
 
+    public void addRow(int rowId) {
+        if(this.rows == null) {
+            this.rows = new ArrayList<>();
+        }
+        TableRow tableRow = new TableRow();
+        tableRow.setTableRowId(rowId);
+        for(int i = 0; i < this.fields.size(); i++) {
+            tableRow.addCell();
+        }
+        this.rows.add(tableRow);
     }
 }

@@ -4,11 +4,10 @@ import org.basex.BaseXServer;
 import org.basex.api.client.ClientSession;
 import org.basex.core.cmd.CreateDB;
 import org.basex.core.cmd.DropDB;
-import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 
-@Service
+
 public class BaseXService {
 
     private final int SERVER_PORT = 1984;

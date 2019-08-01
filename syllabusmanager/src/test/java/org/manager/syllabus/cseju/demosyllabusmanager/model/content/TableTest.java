@@ -8,15 +8,18 @@ import org.manager.syllabus.cseju.demosyllabusmanager.model.content.component.Ta
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
+import java.io.StringReader;
+import java.io.StringWriter;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
 public class TableTest {
 
+    private final int CUT_INDEX = 56;
     private final String STORAGE_LOCATION = "storage/test/test.xml";
     private Table table;
 
@@ -27,10 +30,11 @@ public class TableTest {
         table.setTitle("Course Content");
         table.addNewField();
         table.addNewField();
-        table.setRows(new ArrayList<TableRow>(Collections.singleton(new TableRow(1, new ArrayList<>()))));
+        table.addRow(1);
+        table.addRow(2);
 
         File file = new File(STORAGE_LOCATION);
-        if(!file.exists()) {
+        if (!file.exists()) {
             file.createNewFile();
         }
     }
@@ -42,6 +46,35 @@ public class TableTest {
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
         marshaller.marshal(table, new File(STORAGE_LOCATION));
         marshaller.marshal(table, System.out);
+    }
+
+    @Test
+    public void testPOJOToXmlStringViceVersa() throws JAXBException {
+        JAXBContext jaxbContext = JAXBContext.newInstance(Table.class);
+        Marshaller marshaller = jaxbContext.createMarshaller();
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+
+        StringWriter stringWriter = new StringWriter();
+        marshaller.marshal(table, stringWriter);
+
+        String tableXmlString = (stringWriter.toString()).substring(CUT_INDEX);
+
+        Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+        StringReader stringReader = new StringReader(tableXmlString);
+
+        Table actual = (Table) unmarshaller.unmarshal(stringReader);
+
+        assertEquals(actual.getTableId(), table.getTableId());
+        assertEquals(actual.getTitle(), table.getTitle());
+        assertEquals(actual.getFields(), table.getFields());
+        List<TableRow> actual1 = actual.getRows();
+        List<TableRow> expected1 = table.getRows();
+        for(int i = 0; i < actual1.size(); i++) {
+            assertEquals(actual1.get(i).getTableRowId(), expected1.get(i).getTableRowId());
+            for(int j = 0; j < expected1.get(i).getCells().size(); j++) {
+                assertEquals(actual1.get(i).getCells().get(j), expected1.get(i).getCells().get(j));
+            }
+        }
     }
 
     @After
