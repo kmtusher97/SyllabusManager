@@ -5,6 +5,8 @@ import org.basex.api.client.ClientSession;
 import org.basex.core.cmd.CreateDB;
 import org.basex.core.cmd.DropDB;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 
 
@@ -21,6 +23,35 @@ public class BaseXService {
 
     private ClientSession session;
 
+
+    /**
+     * Create a new baseX xml database
+     * @param databaseName
+     * @param rootElementXml
+     */
+    public void createDatabase(String databaseName, String rootElementXml) {
+        try {
+            File file = new File(STORAGE_LOCATION + databaseName + XML_EXTENSION);
+
+            if (!file.exists()) {
+                file.createNewFile();
+
+                /**
+                 * write initial tags
+                 */
+                FileWriter fileWriter = new FileWriter(file);
+                fileWriter.write(rootElementXml);
+                fileWriter.close();
+
+                /**
+                 * start the database server
+                 */
+                startService(databaseName);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     /**
      * Starts the baseX server
