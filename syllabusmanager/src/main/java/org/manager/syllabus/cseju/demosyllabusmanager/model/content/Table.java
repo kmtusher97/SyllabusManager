@@ -81,4 +81,14 @@ public class Table implements Serializable {
         }
         this.rows.add(tableRow);
     }
+
+    public Table getInitialTable(Integer tableId) {
+        Table table = new Table();
+        table.setTableId(tableId);
+        table.setTitle("Untitled Table");
+        table.addNewField();
+        table.addRow(0);
+
+        return table;
+    }
 }

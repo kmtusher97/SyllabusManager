@@ -6,6 +6,7 @@ import org.manager.syllabus.cseju.demosyllabusmanager.model.content.ContentBundl
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 import java.util.List;
 
 @Getter
@@ -14,6 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @XmlRootElement(name = "courseStructure")
+@XmlType(propOrder = {"name", "contentBundleList"})
 public class CourseStructure {
 
     private String name;

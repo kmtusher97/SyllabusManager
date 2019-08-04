@@ -1,5 +1,7 @@
 package org.manager.syllabus.cseju.demosyllabusmanager.basex;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.basex.BaseXServer;
 import org.basex.api.client.ClientSession;
 import org.basex.core.cmd.CreateDB;
@@ -9,7 +11,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-
+@NoArgsConstructor
+@AllArgsConstructor
 public class BaseXService {
 
     private final int SERVER_PORT = 1984;
@@ -22,7 +25,6 @@ public class BaseXService {
     private BaseXServer baseXServer;
 
     private ClientSession session;
-
 
     /**
      * Create a new baseX xml database
@@ -60,27 +62,30 @@ public class BaseXService {
      * @param databaseName
      * @throws IOException
      */
-    public void startService(String databaseName) throws IOException {
+    public void startService(String databaseName) {
         /**
          * Start server on default port 1984
          */
-        String result = null;
-        baseXServer = new BaseXServer();
-
-        /**
-         * Create a client session with host name, port, user name and password
-         */
         try {
-            session = new ClientSession(
-                    SERVER_HOST, SERVER_PORT,
-                    ADMIN_USERNAME, ADMIN_PASSWORD);
+            baseXServer = new BaseXServer();
 
             /**
-             * Create a database
+             * Create a client session with host name, port, user name and password
              */
-            session.execute(new CreateDB(databaseName,
-                    STORAGE_LOCATION + databaseName + XML_EXTENSION));
+            try {
+                session = new ClientSession(
+                        SERVER_HOST, SERVER_PORT,
+                        ADMIN_USERNAME, ADMIN_PASSWORD);
 
+                /**
+                 * Create a database
+                 */
+                session.execute(new CreateDB(databaseName,
+                        STORAGE_LOCATION + databaseName + XML_EXTENSION));
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -126,11 +131,10 @@ public class BaseXService {
     /**
      * performs read query
      *
-     * @param databaseName
      * @param xQuery
      * @return
      */
-    public String executeReadQuery(String databaseName, String xQuery) {
+    public String executeReadQuery(String xQuery) {
         /**
          * Start server on default port 1984
          */
@@ -146,10 +150,9 @@ public class BaseXService {
     /**
      * performs write query
      *
-     * @param databaseName
      * @param xQuery
      */
-    public void executeWriteQuery(String databaseName, String xQuery) {
+    public void executeWriteQuery(String xQuery) {
         try {
             session.execute("XQUERY " + xQuery);
         } catch (IOException e) {

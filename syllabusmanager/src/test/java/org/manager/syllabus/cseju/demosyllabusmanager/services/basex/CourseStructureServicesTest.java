@@ -6,6 +6,7 @@ import org.manager.syllabus.cseju.demosyllabusmanager.model.CourseStructure;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.File;
+import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
@@ -21,7 +22,10 @@ public class CourseStructureServicesTest {
 
     @Test
     public void createXmlDatabaseWithInitialDefinition() {
-        courseStructureServices.createXmlDatabase("test51", new CourseStructure());
+        CourseStructure courseStructure = new CourseStructure();
+        courseStructure.setName("Theory");
+        courseStructure.setContentBundleList(new ArrayList<>());
+        courseStructureServices.createXmlDatabase("test51", courseStructure);
         assertNotEquals(null, new File("src/main/resources/xml/test51.xml"));
     }
 

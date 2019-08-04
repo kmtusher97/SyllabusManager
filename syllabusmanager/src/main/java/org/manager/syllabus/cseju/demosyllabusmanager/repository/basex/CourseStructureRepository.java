@@ -1,22 +1,18 @@
 package org.manager.syllabus.cseju.demosyllabusmanager.repository.basex;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.manager.syllabus.cseju.demosyllabusmanager.basex.BaseXService;
 import org.manager.syllabus.cseju.demosyllabusmanager.model.CourseStructure;
 import org.manager.syllabus.cseju.demosyllabusmanager.services.jaxb.JAXBServices;
-import org.springframework.beans.factory.annotation.Autowired;
 
-import java.io.File;
 import java.util.ArrayList;
 
+@NoArgsConstructor
+@AllArgsConstructor
 public class CourseStructureRepository {
     private BaseXService baseXService;
     private JAXBServices jaxbServices;
-
-    @Autowired
-    public CourseStructureRepository() {
-        this.baseXService = new BaseXService();
-        this.jaxbServices = new JAXBServices();
-    }
 
     /**
      * Creates the database to store the form info

@@ -1,10 +1,13 @@
 package org.manager.syllabus.cseju.demosyllabusmanager.basex;
 
+import org.basex.BaseXServer;
+import org.basex.api.client.ClientSession;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.manager.syllabus.cseju.demosyllabusmanager.model.CourseStructure;
 import org.manager.syllabus.cseju.demosyllabusmanager.services.jaxb.JAXBServices;
+import org.springframework.boot.test.mock.mockito.MockBean;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -18,10 +21,18 @@ import static org.junit.Assert.*;
 public class BaseXServiceTest {
 
     public static class TestCategory1 {
-        private BaseXService baseXService = new BaseXService();
+        @MockBean
+        private BaseXServer baseXServer;
+
+        @MockBean
+        private ClientSession clientSession;
+
+        private BaseXService baseXService;
 
         @Before
-        public void createTestDBFile() throws IOException {
+        public void init() throws IOException {
+            baseXService = new BaseXService(baseXServer, clientSession);
+
             File file = new File("src/main/resources/xml/test21.xml");
             if (!file.exists()) {
                 file.createNewFile();
@@ -41,12 +52,13 @@ public class BaseXServiceTest {
             }
 
             baseXService.startService("test21");
+            //baseXService.createDatabase("test21", "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><courseStructure><name></name><contentBundles/></courseStructure>");
         }
 
         @Test
         public void testReadQuery() throws IOException {
             String query = "//contentBundle[@id=2]/name";
-            assertEquals("<name>Bundle 2</name>", baseXService.executeReadQuery("test21", query));
+            assertEquals("<name>Bundle 2</name>", baseXService.executeReadQuery(query));
         }
 
         @Test
@@ -54,9 +66,9 @@ public class BaseXServiceTest {
             String query = "insert node " +
                     "<contentBundle id=\"3\"><name>Bundle 3</name></contentBundle>" +
                     " into /courseStructure/contentBundles";
-            baseXService.executeWriteQuery("test21", query);
+            baseXService.executeWriteQuery(query);
             query = "/courseStructure//contentBundle[@id=3]/name";
-            assertEquals("<name>Bundle 3</name>", baseXService.executeReadQuery("test21", query));
+            assertEquals("<name>Bundle 3</name>", baseXService.executeReadQuery(query));
         }
 
         @Test
@@ -64,25 +76,25 @@ public class BaseXServiceTest {
             String query = "insert node " +
                     "<textArea><title>Untitled Text Area</title></textArea>" +
                     " into /courseStructure//contentBundle[@id=2]";
-            baseXService.executeWriteQuery("test21", query);
+            baseXService.executeWriteQuery(query);
             query = "/courseStructure//contentBundle[@id=2]/textArea/title";
-            assertEquals("<title>Untitled Text Area</title>", baseXService.executeReadQuery("test21", query));
+            assertEquals("<title>Untitled Text Area</title>", baseXService.executeReadQuery(query));
         }
 
         @Test
         public void testUpdateQuery() throws IOException {
             String query = "replace node //contentBundle[@id=2]/name with <name>Theory</name>";
-            baseXService.executeWriteQuery("test21", query);
+            baseXService.executeWriteQuery(query);
             query = "/courseStructure//contentBundle[@id=2]/name";
-            assertEquals("<name>Theory</name>", baseXService.executeReadQuery("test21", query));
+            assertEquals("<name>Theory</name>", baseXService.executeReadQuery(query));
         }
 
         @Test
         public void testDeleteQuery() throws IOException {
             String query = "delete node //contentBundle[@id=1]";
-            baseXService.executeWriteQuery("test21", query);
+            baseXService.executeWriteQuery(query);
             query = "count(//contentBundle)";
-            assertEquals(1, Integer.parseInt(baseXService.executeReadQuery("test21", query)));
+            assertEquals(1, Integer.parseInt(baseXService.executeReadQuery(query)));
         }
 
         @After
@@ -97,8 +109,20 @@ public class BaseXServiceTest {
     }
 
     public static class TestCategory2 {
-        private BaseXService baseXService = new BaseXService();
-        private JAXBServices jaxbServices = new JAXBServices();
+        @MockBean
+        private BaseXServer baseXServer;
+
+        @MockBean
+        private ClientSession clientSession;
+
+        private BaseXService baseXService;
+        private JAXBServices jaxbServices;
+
+        @Before
+        public void init() {
+            baseXService = new BaseXService(baseXServer, clientSession);
+            jaxbServices = new JAXBServices();
+        }
 
         @Test
         public void createDatabaseTest() {

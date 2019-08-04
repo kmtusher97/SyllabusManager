@@ -8,15 +8,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class ContentBundleServices {
 
-    private BaseXService baseXService;
-    private JAXBServices jaxbServices;
-    private static Integer countOfContentBundle = 0;
 
-    @Autowired
-    public ContentBundleServices(BaseXService baseXService, JAXBServices jaxbServices) {
-        this.baseXService = baseXService;
-        this.jaxbServices = jaxbServices;
-    }
 
     public void addContentBundle() {
 
